@@ -117,18 +117,19 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
 
   return (
     <div className="fixed inset-0 z-[100] bg-slate-950 flex flex-col overflow-hidden force-landscape">
-      <div className="flex items-center justify-between px-10 py-4 bg-black/20 backdrop-blur-md relative z-20">
-        <div className="flex items-center gap-4 min-w-0">
-          <div className={`w-5 h-5 rounded-full bg-${teamColor}-500 shadow-[0_0_15px_rgba(255,255,255,0.4)] shrink-0`}></div>
-          <span className="text-white font-black text-2xl uppercase tracking-wider truncate">{categoryName}</span>
+      {/* Barra superior compacta */}
+      <div className="flex items-center justify-between px-6 py-2 bg-black/40 backdrop-blur-md relative z-20 border-b border-white/5">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className={`w-3 h-3 rounded-full bg-${teamColor}-500 shadow-[0_0_8px_rgba(255,255,255,0.4)] shrink-0`}></div>
+          <span className="text-white font-black text-sm uppercase tracking-widest truncate opacity-80">{categoryName}</span>
         </div>
-        <div className="text-4xl font-mono font-black text-white bg-black/40 px-6 py-1 rounded-full border border-white/10 shadow-2xl tabular-nums">
+        <div className="text-xl font-mono font-black text-white px-4 py-0.5 rounded-full border border-white/10 bg-black/20 tabular-nums">
           {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
         </div>
       </div>
 
-      <div className="w-full h-2 bg-white/5 relative z-20">
-        <div className="h-full bg-white transition-all duration-1000 ease-linear shadow-[0_0_15px_white]" style={{ width: `${progress}%` }}></div>
+      <div className="w-full h-1 bg-white/5 relative z-20">
+        <div className="h-full bg-white transition-all duration-1000 ease-linear shadow-[0_0_10px_white]" style={{ width: `${progress}%` }}></div>
       </div>
 
       <div className="flex-1 relative flex items-center justify-center overflow-hidden">
@@ -137,12 +138,12 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
           <div onClick={() => handleAction(false)} className="flex-1 cursor-pointer active:bg-white/5" />
         </div>
 
-        <div className="p-12 z-10 pointer-events-none flex flex-col items-center">
-          <h2 className="text-5xl md:text-8xl font-black text-center text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.8)] leading-tight uppercase italic tracking-tighter">
+        <div className="p-8 z-10 pointer-events-none flex flex-col items-center">
+          <h2 className="text-6xl md:text-9xl font-black text-center text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.8)] leading-tight uppercase italic tracking-tighter">
             {currentWord.text}
           </h2>
           {currentWord.subtext && (
-            <p className="text-xl md:text-3xl font-bold text-white/60 mt-4 uppercase tracking-widest">
+            <p className="text-lg md:text-2xl font-bold text-white/50 mt-4 uppercase tracking-[0.2em]">
               {currentWord.subtext}
             </p>
           )}
@@ -153,21 +154,21 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
             lastFeedback === 'correct' ? 'bg-emerald-500' : 'bg-rose-500'
           }`}>
              <div className="scale-110 flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full bg-white/20 border-8 border-white/40 flex items-center justify-center mb-6 shadow-2xl animate-bounce-subtle">
-                   <span className="text-7xl text-white font-black">{lastFeedback === 'correct' ? '✓' : '✕'}</span>
+                <div className="w-24 h-24 rounded-full bg-white/20 border-8 border-white/40 flex items-center justify-center mb-4 shadow-2xl animate-bounce-subtle">
+                   <span className="text-6xl text-white font-black">{lastFeedback === 'correct' ? '✓' : '✕'}</span>
                 </div>
-                <span className="text-white text-7xl md:text-9xl font-black uppercase tracking-tighter drop-shadow-2xl">
+                <span className="text-white text-6xl md:text-8xl font-black uppercase tracking-tighter drop-shadow-2xl">
                   {lastFeedback === 'correct' ? '¡SÍ!' : 'PASO'}
                 </span>
              </div>
           </div>
         )}
 
-        <div className="absolute bottom-8 left-12 flex flex-col items-center text-white/20 font-black text-xs uppercase tracking-[0.5em] z-20 pointer-events-none">
-          <span className="text-4xl mb-1">←</span>CORRECTO
+        <div className="absolute bottom-6 left-8 flex flex-col items-center text-white/10 font-black text-[10px] uppercase tracking-[0.5em] z-20 pointer-events-none">
+          <span className="text-3xl mb-0.5">←</span>CORRECTO
         </div>
-        <div className="absolute bottom-8 right-12 flex flex-col items-center text-white/20 font-black text-xs uppercase tracking-[0.5em] z-20 pointer-events-none">
-          <span className="text-4xl mb-1">→</span>SALTAR
+        <div className="absolute bottom-6 right-8 flex flex-col items-center text-white/10 font-black text-[10px] uppercase tracking-[0.5em] z-20 pointer-events-none">
+          <span className="text-3xl mb-0.5">→</span>SALTAR
         </div>
       </div>
     </div>
@@ -175,3 +176,4 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
 };
 
 export default GameView;
+
