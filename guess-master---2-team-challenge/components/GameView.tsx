@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { RoundResult, WordItem } from '../types';
 import { soundService } from '../services/soundService';
@@ -117,19 +116,21 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
 
   return (
     <div className="fixed inset-0 z-[100] bg-slate-950 flex flex-col overflow-hidden force-landscape">
-      {/* Barra superior compacta */}
-      <div className="flex items-center justify-between px-6 py-2 bg-black/40 backdrop-blur-md relative z-20 border-b border-white/5">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className={`w-3 h-3 rounded-full bg-${teamColor}-500 shadow-[0_0_8px_rgba(255,255,255,0.4)] shrink-0`}></div>
-          <span className="text-white font-black text-sm uppercase tracking-widest truncate opacity-80">{categoryName}</span>
+      {/* CAMBIO APLICADO: Estructura de Barra del 2do código (px-10, bg-black/20) 
+          pero con tamaños de fuente del 1er código (text-sm, text-xl) 
+      */}
+      <div className="flex items-center justify-between px-10 py-4 bg-black/20 backdrop-blur-md relative z-20">
+        <div className="flex items-center gap-4 min-w-0">
+          <div className={`w-3 h-3 rounded-full bg-${teamColor}-500 shadow-[0_0_15px_rgba(255,255,255,0.4)] shrink-0`}></div>
+          <span className="text-white font-black text-sm uppercase tracking-widest truncate opacity-90">{categoryName}</span>
         </div>
-        <div className="text-xl font-mono font-black text-white px-4 py-0.5 rounded-full border border-white/10 bg-black/20 tabular-nums">
+        <div className="text-xl font-mono font-black text-white px-6 py-1 rounded-full border border-white/10 bg-black/40 shadow-2xl tabular-nums">
           {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
         </div>
       </div>
 
-      <div className="w-full h-1 bg-white/5 relative z-20">
-        <div className="h-full bg-white transition-all duration-1000 ease-linear shadow-[0_0_10px_white]" style={{ width: `${progress}%` }}></div>
+      <div className="w-full h-2 bg-white/5 relative z-20">
+        <div className="h-full bg-white transition-all duration-1000 ease-linear shadow-[0_0_15px_white]" style={{ width: `${progress}%` }}></div>
       </div>
 
       <div className="flex-1 relative flex items-center justify-center overflow-hidden">
@@ -138,6 +139,7 @@ const GameView: React.FC<GameViewProps> = ({ wordList, duration, onEnd, teamColo
           <div onClick={() => handleAction(false)} className="flex-1 cursor-pointer active:bg-white/5" />
         </div>
 
+        {/* CAMBIO APLICADO: Tamaños de fuente y padding restaurados al 1er código (más equilibrado) */}
         <div className="p-8 z-10 pointer-events-none flex flex-col items-center">
           <h2 className="text-6xl md:text-9xl font-black text-center text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.8)] leading-tight uppercase italic tracking-tighter">
             {currentWord.text}
